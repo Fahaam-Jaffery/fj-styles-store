@@ -1,0 +1,21 @@
+Please update the current Framer website to incorporate an advanced, detailed e-commerce architecture similar to the Outfitters and Blackout templates, using a distinct, high-end visual style.
+
+1. CMS & Data Architecture:
+- Implement a robust CMS Collection for "Products" with fields for: Title, Category (e.g., Sweats, Denim, Outerwear, Footwear), Price, Discount Badges (e.g., -20%, -40%), Color Swatches (with multi-color variant support), Sizes (S, M, L, XL), and Product Detail Gallery Images.
+- Implement a CMS Collection for "Journal / Style Guides" with fields for: Title, Category Tag (e.g., Style Guide, Fashion Tips), Read Time, Publish Date, and Full Article Content.
+
+2. Dynamic Storefront Sections (Home Page):
+- Header Announcement Bar: Scrolling ticker tape for active discounts (e.g., "NEW SEASON • 20% DISCOUNT").
+- Hero Section: Immersive split-screen layout with interactive slide indicators (01 / 02) featuring high-impact outerwear and weather-resistant gear highlights.
+- Categorized Product Grids: Sections for "Just Dropped", "Top Picks / Everyday Essentials", and "New Denim Drop" with interactive size selection pills and discount percentage badges directly on the product cards.
+- Multi-Category Showcase: Cards highlighting distinct style collections ("Made For Every Day", "Comfort For Every Day") with quick filter tags.
+- Editorial Journal Grid: Card layout showcasing recent style guides with read times and publication dates.
+- Brand Promise & Feature Blocks: 4-column icon grid detailing "Premium Fabrics", "Quick & Safe Delivery", "Easy 15-Day Returns", and "Customer Reviews".
+
+3. Color Selection & Style System:
+- Define a sophisticated, earthy yet modern color palette featuring deep charcoal/jet black primary backgrounds, warm sand/taupe accents, crisp off-white typography, and vibrant seasonal color swatches.
+- Ensure all components (side navigation panel, product cards, filter buttons, and newsletter modals) maintain a cohesive global style using reusable Framer components.
+
+4. Footer & Navigation Detailing:
+- Side Navigation Panel: Hamburger menu opening a full-width/slide-over navigation drawer containing categorized links (New In, Sweats, Denim, Footwear, Accessories).
+- Comprehensive Footer: Multi-column footer layout featuring Company links, Customer Support (Track Your Order, Exchange & Returns, Retail Stores), direct email subscription bar, and social links.
