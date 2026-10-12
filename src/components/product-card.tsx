@@ -3,7 +3,8 @@ import { money } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { useBoutique } from "@/stores/boutique";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useState } from "react";
 
 export function ProductCard({ product }: { product: Product }) {
   const [colourId, setColourId] = useState(product.colours[0]?.id ?? "");
@@ -44,7 +45,7 @@ export function ProductCard({ product }: { product: Product }) {
           className="colour-swap"
         />
         {product.discount ? (
-          <span className="absolute top-3 left-3 bg-ink px-2 py-1 text-xs tracking-widest text-paper">
+          <span className="absolute top-3 left-3 rounded-[var(--radius-btn)] bg-ink px-2 py-1 text-xs tracking-widest text-paper">
             −{product.discount}%
           </span>
         ) : null}
@@ -54,7 +55,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div>
           <p className="text-xs tracking-widest text-mute uppercase">{categoryLabel(product.category)}</p>
           <h3 className="mt-1 font-serif text-xl leading-tight">
-            <Link to="/product/$slug" params={{ slug: product.slug }} className="hover:text-sand">
+            <Link to="/product/$slug" params={{ slug: product.slug }} className="quiet-link hover:text-sand">
               {product.title}
             </Link>
           </h3>
@@ -106,7 +107,7 @@ export function ProductCard({ product }: { product: Product }) {
                 setHint(false);
               }}
               className={cn(
-                "h-11 shrink-0 border px-3 text-sm",
+                "size-pill shrink-0 border px-3 text-sm",
                 selected ? "border-paper bg-paper text-ink" : "border-line text-paper",
               )}
             >
@@ -119,7 +120,7 @@ export function ProductCard({ product }: { product: Product }) {
       <button
         type="button"
         onClick={onAdd}
-        className="mt-3 h-11 border border-paper text-sm tracking-widest uppercase hover:bg-paper hover:text-ink"
+        className="btn mt-3 h-11 border border-paper text-sm tracking-widest uppercase hover:bg-paper hover:text-ink"
       >
         Add to bag
       </button>
@@ -131,7 +132,7 @@ export function ProductCard({ product }: { product: Product }) {
 export function ProductGrid({ products }: { products: Product[] }) {
   if (products.length === 0) {
     return (
-      <p className="border border-line px-6 py-16 text-center text-mute">
+      <p className="border border-line px-6 py-16 text-center text-mute" style={{ borderRadius: "var(--radius-frame)" }}>
         Nothing in this edit. Try another filter.
       </p>
     );
@@ -142,6 +143,56 @@ export function ProductGrid({ products }: { products: Product[] }) {
       {products.map((product) => (
         <ProductCard key={product.slug} product={product} />
       ))}
+    </div>
+  );
+}
+
+/** Horizontal arrow-driven carousel for homepage apparel rows */
+export function ProductRail({ products, label }: { products: Product[]; label?: string }) {
+  const scroller = useRef<HTMLDivElement>(null);
+
+  function scrollByDir(dir: -1 | 1) {
+    const el = scroller.current;
+    if (!el) return;
+    const amount = Math.max(el.clientWidth * 0.72, 240);
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  }
+
+  if (products.length === 0) {
+    return (
+      <p className="border border-line px-6 py-16 text-center text-mute" style={{ borderRadius: "var(--radius-frame)" }}>
+        Nothing in this edit.
+      </p>
+    );
+  }
+
+  return (
+    <div className="rail-wrap" aria-label={label ?? "Product carousel"}>
+      <div className="rail-fade rail-fade-left hidden sm:block" aria-hidden="true" />
+      <div className="rail-fade rail-fade-right hidden sm:block" aria-hidden="true" />
+      <button
+        type="button"
+        className="rail-arrow rail-arrow-left hidden sm:flex"
+        aria-label="Scroll products left"
+        onClick={() => scrollByDir(-1)}
+      >
+        <ChevronLeft className="size-5" />
+      </button>
+      <button
+        type="button"
+        className="rail-arrow rail-arrow-right hidden sm:flex"
+        aria-label="Scroll products right"
+        onClick={() => scrollByDir(1)}
+      >
+        <ChevronRight className="size-5" />
+      </button>
+      <div ref={scroller} className="rail-track">
+        {products.map((product) => (
+          <div key={product.slug}>
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
