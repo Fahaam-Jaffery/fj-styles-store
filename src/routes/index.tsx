@@ -230,7 +230,7 @@ function JournalStrip() {
           </div>
           <p className="mt-4 text-xs tracking-widest text-mute uppercase">{longDate(post.date)}</p>
           <h3 className="mt-2 font-serif text-2xl group-hover:text-sand">{post.title}</h3>
-          <p className="mt-2 text-sm text-mute">{post.excerpt}</p>
+          <p className="mt-2 text-sm text-mute">{post.standfirst}</p>
         </Link>
       ))}
       {posts.length === 0 ? (
