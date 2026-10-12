@@ -43,7 +43,7 @@ function ReturnsPage() {
             </article>
           ))}
         </div>
-        <Link to="/track" className="mt-10 inline-flex h-12 items-center bg-paper px-6 text-sm tracking-widest text-ink uppercase">
+        <Link to="/track" search={{ order: "" }} className="btn mt-10 inline-flex h-12 items-center bg-paper px-6 text-sm tracking-widest text-ink uppercase">
           Track your order
         </Link>
       </ShellWidth>
