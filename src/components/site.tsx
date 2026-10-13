@@ -51,14 +51,14 @@ export function Site({ children }: { children: ReactNode }) {
   }, [setBagOpen, setOfferOpen]);
 
   useEffect(() => {
-    const locked = menuOpen || bagOpen || offerOpen;
+    const locked = menuOpen || bagOpen;
     if (!locked) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = previous;
     };
-  }, [menuOpen, bagOpen, offerOpen]);
+  }, [menuOpen, bagOpen]);
 
   return (
     <div className="min-h-screen">
